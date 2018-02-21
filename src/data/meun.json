@@ -1,0 +1,53 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "index": "1",
+      "title": "首页",
+      "pathName": "/"
+    },
+    {
+      "id": 2,
+      "index": "2",
+      "title": "D3",
+      "children": [
+        {
+          "id": 21,
+          "index": "2-1",
+          "title": "简单线形图",
+          "pathName": "simpleline"
+        },
+        {
+          "id": 22,
+          "index": "2-2",
+          "title": "简单饼状图",
+          "pathName": "simplepie"
+        },
+        {
+          "id": 23,
+          "index": "2-3",
+          "title": "简单柱状图",
+          "pathName": "simplebar"
+        },
+        {
+          "id": 24,
+          "index": "2-4",
+          "title": "简单点状图",
+          "pathName": "simplepoints"
+        },
+        {
+          "id": 25,
+          "index": "2-5",
+          "title": "力导向图",
+          "pathName": "simpleforce"
+        },
+        {
+          "id": 26,
+          "index": "2-6",
+          "title": "简单地理图",
+          "pathName": "chinamap"
+        }
+      ]
+    }
+  ]
+}
