@@ -1,6 +1,6 @@
-# vue-element
+# vue-D3
 
-> vue-element
+> vue-D3
 
 ## Build Setup
 
