@@ -10,6 +10,7 @@ const ChinaMap = resolve => require(['../components/D3/ChinaMap.vue'], resolve)
 const SimpleForce = resolve => require(['../components/D3/SimpleForce.vue'], resolve)
 const SimpleBar = resolve => require(['../components/D3/SimpleBar.vue'], resolve)
 const SimplePoints = resolve => require(['../components/D3/SimplePoints.vue'], resolve)
+const Form = resolve => require(['../components/form/form.vue'], resolve)
 
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
         path: '/',
         name: 'index',
         component: Index
+      },{
+        path: '/form',
+        name: 'form',
+        component: Form
       },{
         path: '/simpleline',
         name: 'simpleline',
