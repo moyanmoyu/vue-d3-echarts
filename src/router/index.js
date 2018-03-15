@@ -10,7 +10,13 @@ const ChinaMap = resolve => require(['../components/D3/ChinaMap.vue'], resolve)
 const SimpleForce = resolve => require(['../components/D3/SimpleForce.vue'], resolve)
 const SimpleBar = resolve => require(['../components/D3/SimpleBar.vue'], resolve)
 const SimplePoints = resolve => require(['../components/D3/SimplePoints.vue'], resolve)
-const Form = resolve => require(['../components/form/form.vue'], resolve)
+const Form = resolve => require(['../components/Common/form.vue'], resolve)
+const Table = resolve => require(['../components/Common/table.vue'], resolve)
+
+const Bar = resolve => require(['../components/Echarts/bar.vue'], resolve)
+const Line = resolve => require(['../components/Echarts/line.vue'], resolve)
+const Map = resolve => require(['../components/Echarts/map.vue'], resolve)
+const Pie = resolve => require(['../components/Echarts/pie.vue'], resolve)
 
 Vue.use(Router)
 
@@ -28,6 +34,10 @@ export default new Router({
         path: '/form',
         name: 'form',
         component: Form
+      },{
+        path: '/table',
+        name: 'table',
+        component: Table
       },{
         path: '/simpleline',
         name: 'simpleline',
@@ -52,6 +62,22 @@ export default new Router({
         path: '/simplepie',
         name: 'simplepie',
         component: SimplePie
+      },{
+        path: '/echartspie',
+        name: 'echartspie',
+        component: Pie
+      },{
+        path: '/echartsline',
+        name: 'echartsline',
+        component: Line
+      },{
+        path: '/echartsbar',
+        name: 'echartsbar',
+        component: Bar
+      },{
+        path: '/echartsmap',
+        name: 'echartsmap',
+        component: Map
       }]
     }
   ]

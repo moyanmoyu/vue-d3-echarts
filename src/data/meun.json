@@ -7,8 +7,14 @@
       "pathName": "/"
     },
     {
-      "id": 3,
-      "index": "3",
+      "id": 4,
+      "index": "4",
+      "title": "table",
+      "pathName": "/table"
+    },
+    {
+      "id": 5,
+      "index": "5",
       "title": "form",
       "pathName": "/form"
     },
@@ -54,6 +60,36 @@
           "pathName": "chinamap"
         }
       ]
+    },
+    {
+      "id": 3,
+      "index": "3",
+      "icon": "el-icon-view",
+      "title": "echarts",
+      "children": [{
+        "id": 31,
+        "index": "3-1",
+        "title": "pie",
+        "pathName": "/echartspie"
+      },
+      {
+        "id": 32,
+        "index": "3-2",
+        "title": "map",
+        "pathName": "/echartsmap"
+      },
+      {
+        "id": 33,
+        "index": "3-3",
+        "title": "line",
+        "pathName": "/echartsline"
+      },
+      {
+        "id": 34,
+        "index": "3-4",
+        "title": "bar",
+        "pathName": "/echartsbar"
+      }]
     }
   ]
 }
