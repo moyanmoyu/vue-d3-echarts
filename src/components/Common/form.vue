@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-main class="full-screen">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="活动名称">
         <el-input v-model="form.name"></el-input>
@@ -44,15 +44,15 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="cancel">取消</el-button>
       </el-form-item>
     </el-form>
-  </div>
+  </el-main>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       form: {
         name: '',
@@ -64,19 +64,59 @@ export default {
         resource: '',
         time: 20,
         desc: ''
-      }
+      },
+      isUpdate: false
+    }
+  },
+  props: {
+    id: {
+      type: Number
+    },
+    add: {
+      default: false,
+      type: Boolean
+    }
+  },
+  watch: {
+    id(val) {
+      console.log('id is update')
     }
   },
   methods: {
-    onSubmit () {
+    onSubmit() {
       console.log(this.form)
+      if (this.add) {
+        this.isUpdate = true
+        this.$router.back()
+      } else {
+        this.$emit('update', true)
+      }
+    },
+    cancel() {
+      if (this.add) {
+        this.$router.back()
+      } else {
+        this.$emit('update', false)
+      }
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    to.params.update = this.isUpdate
+    next()
   }
 }
 </script>
 
 <style>
-.line{
+.line {
   text-align: center;
+}
+.full-screen{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 11;
 }
 </style>

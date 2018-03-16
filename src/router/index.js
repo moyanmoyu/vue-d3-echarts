@@ -37,7 +37,12 @@ export default new Router({
       },{
         path: '/table',
         name: 'table',
-        component: Table
+        component: Table,
+        children: [{
+          path: 'add',
+          name: 'add',
+          component: Form
+        }]
       },{
         path: '/simpleline',
         name: 'simpleline',
