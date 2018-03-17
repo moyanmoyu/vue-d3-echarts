@@ -38,7 +38,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           warnings: false
         }
       },
-      sourceMap: config.build.productionSourceMap,
+      // sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
     // extract css into its own file
@@ -63,6 +63,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
+      favicon: path.resolve('./src/assets/favicon.ico'),
       inject: true,
       minify: {
         removeComments: true,

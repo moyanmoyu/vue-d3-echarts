@@ -8,6 +8,14 @@
       active-text="叠加"
       inactive-text="独立">
     </el-switch>
+    <el-switch
+      style="display: block"
+      v-model="isSmooth"
+      active-color="#13ce66"
+      inactive-color="#ff4949"
+      active-text="曲线"
+      inactive-text="折线">
+    </el-switch>
     <div id='main'></div>
   </div>
 </template>
@@ -15,9 +23,10 @@
 <script>
 import echarts from 'echarts'
 export default {
-  data () {
+  data() {
     return {
       isStack: false,
+      isSmooth: false,
       opinion: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
       series: [
         {
@@ -48,11 +57,12 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
     this.init('main')
+    window.addEventListener('resize', this.resize)
   },
   watch: {
-    isStack (val) {
+    isStack(val) {
       if (val) {
         this.series.forEach(item => {
           item.stack = '总量'
@@ -63,28 +73,53 @@ export default {
         })
       }
       this.update()
+    },
+    isSmooth(val) {
+      if (val) {
+        this.series.forEach(item => {
+          item.smooth = true
+        })
+      } else {
+        this.series.forEach(item => {
+          item.smooth = false
+        })
+      }
+      this.update()
     }
   },
   methods: {
-    init (id) {
-      var width = this.$el.parentElement.offsetWidth - 40
-      var height = this.$el.parentElement.offsetHeight - 40 - 40
-      var echarts = document.getElementById(id)
-      echarts.style.width = `${width}px`
-      echarts.style.height = `${height}px`
+    init(id) {
+      this.parentElement = this.$el.parentElement
+      var width = this.parentElement.offsetWidth - 40
+      var height = this.parentElement.offsetHeight - 40 - 80
+      this.echarts = document.getElementById(id)
+      this.echarts.style.width = `${width}px`
+      this.echarts.style.height = `${height}px`
       this.drawPie('main')
     },
-    drawPie (id) {
+    resize() {
+      var width = this.parentElement.offsetWidth - 40
+      var height = this.parentElement.offsetHeight - 40 - 80
+      this.echarts.style.width = `${width}px`
+      this.echarts.style.height = `${height}px`
+
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.charts.resize()
+      }, 200)
+    },
+    drawPie(id) {
       if (!this.charts) {
         this.charts = echarts.init(document.getElementById(id))
       }
       this.charts.setOption(this.getOption())
     },
-    update () {
-      this.drawPie('main')
+    update() {
       this.charts.setOption(this.getOption(), true)
     },
-    getOption () {
+    getOption() {
       return {
         title: {
           text: '折线图堆叠'
@@ -117,7 +152,7 @@ export default {
 </script>
 
 <style>
-.el-switch{
+.el-switch {
   background: #fff;
   padding: 10px;
 }
