@@ -1,7 +1,7 @@
 {
-  "name": "vue-element",
+  "name": "vue-d3-echarts",
   "version": "1.0.0",
-  "description": "vue-element",
+  "description": "vue-d3-echarts",
   "author": "moyu",
   "private": true,
   "scripts": {
