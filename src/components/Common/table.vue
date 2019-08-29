@@ -1,6 +1,15 @@
 <template>
   <div>
     <div v-show="!showForm">
+      <el-tabs type="border-card">
+        <el-tab-pane label="用户管理">
+          <h1>ssssssssss</h1>
+        </el-tab-pane>
+        <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+      </el-tabs>
+
       <el-table
         v-loading="loading"
         :data="tableData"
@@ -31,15 +40,17 @@
           width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button @click="deleteClick(scope.row)" type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <el-pagination
         background
+        :page-sizes="[10, 20, 30]"
         :page-size="20"
-        layout="prev, pager, next"
+        layout="sizes, prev, pager, next"
         @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
         :current-page="page"
         :total="100">
       </el-pagination>
@@ -62,6 +73,7 @@ import Form from './form'
 export default {
   data() {
     return {
+      date: 1,
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
@@ -79,6 +91,11 @@ export default {
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }],
+      newData: {
+        date: '2016-06-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
       loading: false,
       page: 3,
       showForm: false,
@@ -99,8 +116,15 @@ export default {
     handleClick(row) {
       console.log(row)
     },
+    deleteClick(row) {
+      var index = this.tableData.indexOf(row)
+      this.tableData.splice(index, 1)
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val
+    },
+    handleSizeChange(val){
+      console.log(`每页 ${val} 条`);
     },
     logClick() {
       console.log(this.multipleSelection)
@@ -126,6 +150,11 @@ export default {
       console.log('show:', val)
       this.index = 0
       this.showForm = false
+      var newData = Object.assign({}, this.newData)
+      newData.date = newData.date.slice(0, -1)
+      newData.date += this.date
+      this.date += 1
+      this.tableData.push(newData)
     }
   }
 }
